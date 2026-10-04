@@ -1,12 +1,30 @@
 from pathlib import Path
-import tempfile, json, os
+import sys
+import tempfile
+import json
+import os
+
+ROOT = Path(__file__).resolve().parents[1]
+
+# Make project root importable when Streamlit is launched
+# directly from the app directory or from another working directory.
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-ROOT=Path(__file__).resolve().parents[1]
-st.set_page_config(page_title='AI Data Science Workbench',layout='wide')
-st.title('AI Data Science & Business Intelligence Workbench')
-st.caption('Universal data → quality → analytics → ML → agent → BI/reporting workflow')
+
+st.set_page_config(
+    page_title="AI Data Science Workbench",
+    layout="wide"
+)
+
+st.title("AI Data Science & Business Intelligence Workbench")
+st.caption(
+    "Universal data → quality → analytics → ML → agent → BI/reporting workflow"
+)
+
 
 from src.universal.io import read_table,list_excel_sheets
 from src.universal.profile import profile_dataframe,rank_target_candidates
