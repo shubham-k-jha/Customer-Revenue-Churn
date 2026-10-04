@@ -1,0 +1,23 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    ports: ["8000:8000"]
+    environment:
+      PLATFORM_API_KEY: ${PLATFORM_API_KEY:-}
+    volumes: ["./artifacts:/app/artifacts","./models:/app/models","./reports:/app/reports"]
+  dashboard:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports: ["8501:8501"]
+    volumes: ["./artifacts:/app/artifacts","./reports:/app/reports"]
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    ports: ["9090:9090"]
+    volumes: ["./docker/prometheus.yml:/etc/prometheus/prometheus.yml:ro"]
+  grafana:
+    image: grafana/grafana:11.4.0
+    ports: ["3000:3000"]
+    volumes: ["./docker/grafana/provisioning:/etc/grafana/provisioning:ro","./docker/grafana/dashboards:/var/lib/grafana/dashboards:ro"]

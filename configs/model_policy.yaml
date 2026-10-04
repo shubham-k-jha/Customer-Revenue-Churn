@@ -1,0 +1,10 @@
+model_selection_metric: average_precision
+threshold_objective: f1
+minimum_precision: 0.20
+risk_bands:
+  low: [0.0, 0.30]
+  medium: [0.30, 0.60]
+  high: [0.60, 1.0]
+business:
+  intervention_cost: 5.0
+  gross_margin_rate: 0.30

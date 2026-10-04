@@ -1,0 +1,1 @@
+{"required_columns":["customer_id","date","revenue"],"columns":{"customer_id":{"unique":true},"date":{"dtype":["datetime","object","string"]},"revenue":{"min":0,"max_null_rate":0.05}}}

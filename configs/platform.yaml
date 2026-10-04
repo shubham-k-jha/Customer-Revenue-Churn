@@ -1,0 +1,16 @@
+upload:
+  max_mb: 100
+  allowed_extensions: [csv, tsv, xlsx, xls, parquet, pq]
+quality:
+  null_warn: 0.30
+  duplicate_warn: 0.05
+ml:
+  test_size: 0.20
+  cv_folds: 5
+  random_state: 42
+security:
+  sql_read_only: true
+  max_sql_statements: 1
+monitoring:
+  psi_warning: 0.10
+  psi_critical: 0.25
