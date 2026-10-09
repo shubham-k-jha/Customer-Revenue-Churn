@@ -1,432 +1,320 @@
 # 🚀 Customer Revenue & Churn Intelligence Platform
 
 <p align="center">
-  <strong>From raw tabular data to defensible business decisions.</strong>
+  <strong>From raw tabular data to defensible business decisions.</strong><br>
+  Business Analytics · BI · Statistics · Machine Learning · Forecasting · Explainability · Governance
 </p>
 
 <p align="center">
-  A production-oriented analytics platform combining
-  <strong>Business Analytics · BI · Statistics · Machine Learning · Forecasting · Explainability · Governance</strong>
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/Tests-67%20passed-success" alt="67 tests passed in reported audit">
+  <img src="https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Deployment-Docker-2496ED?logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/Focus-Analytics%20Engineering-6C63FF" alt="Analytics engineering">
 </p>
 
 <p align="center">
-
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![Version](https://img.shields.io/badge/Version-4.2.0-blue)
-![Tests](https://img.shields.io/badge/Tests-67%20Passed-success)
-![FastAPI](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)
-![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit&logoColor=white)
-![Docker](https://img.shields.io/badge/Deployment-Docker-2496ED?logo=docker&logoColor=white)
-
+  <em>A reusable analytics workbench for turning messy tabular data into reproducible, testable, explainable and deployable business intelligence.</em>
 </p>
 
 ---
 
-## 🎯 What Is This?
+## 🧭 At a glance
 
-**Customer Revenue & Churn Intelligence Platform** is a reusable analytics workbench designed to turn messy tabular data into **reproducible, testable, explainable and deployable business intelligence**.
+| 🧹 Prepare | 📊 Understand | 🤖 Predict | 🔎 Explain | 📦 Deliver | 🛡️ Govern |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Ingest, profile and validate data | Customer, revenue, cohort and statistical analysis | Churn classification, regression and time-series forecasting | SHAP, permutation importance and error analysis | Excel, Power BI tables, API and Streamlit dashboard | Lineage, drift monitoring, model registry and guarded SQL |
 
-It is deliberately more than a churn model.
+> **The idea:** build the full analytical workflow—not just a notebook or a standalone churn model.
 
-The platform provides an end-to-end workflow:
+## 📚 Contents
 
-```text
-INGEST
-   ↓
-PROFILE
-   ↓
-QUALITY GATE
-   ↓
-ANALYZE
-   ↓
-MODEL
-   ↓
-EXPLAIN
-   ↓
-REPORT
-   ↓
-SERVE
-   ↓
-MONITOR
+- [Business questions](#-business-questions)
+- [End-to-end workflow](#-the-end-to-end-workflow)
+- [Platform architecture](#️-platform-architecture)
+- [Core capabilities](#-core-capabilities)
+- [AI analytics agent](#-optional-ai-analytics-agent)
+- [Curated case studies](#-curated-case-studies)
+- [Technology stack](#️-technology-stack)
+- [Quick start](#-quick-start)
+- [Run the dashboard, API and Docker stack](#-run-the-dashboard-api-and-docker-stack)
+- [Repository structure](#-repository-structure)
+- [Reported release audit](#-reported-release-audit)
+- [Reproducibility and limitations](#-reproducibility-and-limitations)
+- [Career relevance](#-career-relevance)
+- [Documentation](#-documentation)
+- [Project status](#-project-status--active-development)
+- [Contact](#-contact)
+
+---
+
+## 💼 Business questions
+
+| Business question | Capability | Decision it can support |
+|---|---|---|
+| Who are our highest-value customers? | Customer and revenue profiling | Prioritize valuable customer groups |
+| Which segments are growing or declining? | Segmentation and trend analysis | Identify where to investigate or invest |
+| Where is revenue concentrated? | Revenue and customer concentration | Understand dependency and concentration risk |
+| Which customers show churn risk? | Churn modeling | Prioritize retention outreach for review |
+| What factors are associated with churn? | Statistical analysis and ML | Identify predictive signals for investigation |
+| Are observed differences credible? | Hypothesis testing and effect sizes | Distinguish signal from noisy differences |
+| What may happen next? | Time-series forecasting | Support planning with uncertainty-aware estimates |
+| Which observations are unusual? | Anomaly detection | Flag records or periods for investigation |
+| Can predictions be explained? | SHAP and permutation importance | Communicate model behavior and limitations |
+| Can the system be monitored after deployment? | Drift, metrics and governance | Detect changes that may require review |
+
+*Analytical findings support decisions; they do not automatically prove causation or guarantee business outcomes.*
+
+---
+
+## 🔄 The end-to-end workflow
+
+<table>
+  <tr>
+    <th align="center">01 · INGEST</th>
+    <th align="center">02 · PROFILE</th>
+    <th align="center">03 · VALIDATE</th>
+    <th align="center">04 · ANALYZE</th>
+    <th align="center">05 · MODEL</th>
+    <th align="center">06 · EXPLAIN</th>
+    <th align="center">07 · DELIVER</th>
+    <th align="center">08 · MONITOR</th>
+  </tr>
+  <tr>
+    <td align="center">CSV<br>Excel<br>Parquet</td>
+    <td align="center">Schema<br>Types<br>IDs / dates</td>
+    <td align="center">Nulls<br>Duplicates<br>Contracts</td>
+    <td align="center">RFM<br>Revenue<br>Statistics</td>
+    <td align="center">Churn<br>Regression<br>Forecasts</td>
+    <td align="center">SHAP<br>Importance<br>Error analysis</td>
+    <td align="center">Reports<br>BI tables<br>API / UI</td>
+    <td align="center">Drift<br>Metrics<br>Lineage</td>
+  </tr>
+</table>
+
+```mermaid
+flowchart LR
+    A[Raw files<br/>CSV · Excel · Parquet] --> B[Ingestion & profiling]
+    B --> C[Quality gates<br/>& data contracts]
+    C --> D[Business analytics<br/>& SQL]
+    C --> E[Statistical analysis]
+    D --> F[ML & forecasting]
+    E --> F
+    F --> G[Explainability<br/>& evaluation]
+    G --> H[Reports · BI · API · Dashboard]
+    H --> I[Governance<br/>& monitoring]
+    I -. feedback .-> B
 ```
 
-The same engine can work with **CSV, Excel and Parquet** data and support workflows ranging from business analysis and BI to machine learning and forecasting.
+The same workflow supports data analysis, BI, statistical investigation, predictive modeling and production-oriented delivery across CSV, TSV, Excel and Parquet inputs.
 
 ---
 
-# 💼 Business Questions
+## 🏗️ Platform architecture
 
-The platform is designed around questions that matter to customer and revenue teams:
-
-| Business Question | Analytics Capability |
-|---|---|
-| Who are our highest-value customers? | Customer & revenue profiling |
-| Which segments are growing or declining? | Segmentation & trend analysis |
-| Where is revenue concentrated? | Concentration analysis |
-| Which customers show churn risk? | Churn modeling |
-| What factors are associated with churn? | Statistical analysis + ML |
-| Are observed differences credible? | Hypothesis testing + effect sizes |
-| What is likely to happen next? | Time-series forecasting |
-| Which observations are unusual? | Anomaly detection |
-| Can model predictions be explained? | SHAP + permutation importance |
-| Can the system be monitored after deployment? | Drift + metrics + governance |
-
----
-
-# 🏗️ Platform Architecture
-
-```text
-                         ┌──────────────────────────┐
-                         │ CSV / Excel / Parquet    │
-                         │ Multiple Tabular Tables  │
-                         └─────────────┬────────────┘
-                                       │
-                                       ▼
-                         ┌──────────────────────────┐
-                         │ Ingestion & Profiling    │
-                         │ Schema · Types · IDs     │
-                         │ Dates · Target · PII     │
-                         └─────────────┬────────────┘
-                                       │
-                                       ▼
-                         ┌──────────────────────────┐
-                         │ Data Quality & Contracts  │
-                         │ Nulls · Duplicates       │
-                         │ Outliers · Constraints    │
-                         └─────────────┬────────────┘
-                                       │
-                         ┌─────────────┴─────────────┐
-                         ▼                           ▼
-              ┌────────────────────┐      ┌────────────────────┐
-              │ SQL / Join Layer   │      │ Analytics Layer    │
-              │ DuckDB / SQL       │      │ Stats · RFM · TS   │
-              │ Cardinality Guard  │      │ Anomaly · Survival │
-              └──────────┬─────────┘      └──────────┬─────────┘
-                         │                           │
-                         └─────────────┬─────────────┘
-                                       ▼
-                         ┌──────────────────────────┐
-                         │ ML & Forecasting         │
-                         │ CV · Temporal Splits     │
-                         │ Calibration · Thresholds │
-                         │ Leakage-Safe Features    │
-                         └─────────────┬────────────┘
-                                       │
-                    ┌──────────────────┼──────────────────┐
-                    ▼                  ▼                  ▼
-             ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-             │Explainability│   │  Reporting  │   │Batch Scoring│
-             │ SHAP / Perm. │   │Excel / BI   │   │Model Bundle │
-             └──────┬──────┘   └──────┬──────┘   └──────┬──────┘
-                    │                 │                  │
-                    └─────────────────┼──────────────────┘
-                                      ▼
-                         ┌──────────────────────────┐
-                         │ Governance & Monitoring  │
-                         │ Registry · Lineage       │
-                         │ Drift · Prometheus       │
-                         └─────────────┬────────────┘
-                                       ▼
-                         ┌──────────────────────────┐
-                         │ FastAPI · Streamlit      │
-                         │ Docker · Grafana         │
-                         └──────────────────────────┘
+```mermaid
+flowchart TB
+    A[CSV / TSV / Excel / Parquet] --> B[Ingestion & profiling<br/>Schema · Types · IDs · Dates · Target · PII]
+    B --> C[Data quality & contracts<br/>Missingness · Duplicates · Outliers · Constraints]
+    C --> D[SQL & join layer<br/>DuckDB · Cardinality checks · Join guards]
+    C --> E[Analytics layer<br/>RFM · Statistics · Cohorts · Survival · Anomalies]
+    D --> F[ML & forecasting<br/>Temporal splits · CV · Calibration · Leakage-safe features]
+    E --> F
+    F --> G1[Explainability<br/>SHAP · Permutation]
+    F --> G2[Reporting<br/>Excel · Power BI]
+    F --> G3[Batch scoring<br/>Validated model bundle]
+    G1 --> H[Governance & monitoring<br/>Registry · Lineage · Drift · Prometheus]
+    G2 --> H
+    G3 --> H
+    H --> I[Serving & operations<br/>FastAPI · Streamlit · Docker · Grafana]
 ```
 
+### Architecture principles
+
+- **Quality before conclusions:** profile data and apply explicit validation gates before analysis.
+- **Leakage-aware modeling:** separate training and evaluation correctly, especially for time-dependent data.
+- **Guarded joins and SQL:** validate join cardinality and reject unsafe query patterns.
+- **Explainability with caveats:** show how a model behaves without claiming that feature importance proves causality.
+- **Governed delivery:** retain run metadata, hashes and lineage where supported by the workflow.
+
 ---
 
-# ⚡ Core Capabilities
+## ⚡ Core capabilities
 
-## 🧹 Data Engineering & Quality
+### 🧹 Data engineering & quality
 
 - CSV, TSV, XLSX/XLS and Parquet ingestion
 - Automatic schema and type inference
-- Date, ID and target candidate detection
-- Missingness diagnostics
-- Duplicate detection
-- Cardinality analysis
-- Outlier diagnostics
-- Data-quality scoring
-- Explicit data contracts
+- Date, ID and target-candidate detection
+- Missingness diagnostics and duplicate detection
+- Cardinality analysis and outlier diagnostics
+- Data-quality scoring and explicit data contracts
 - Invalid-type and invalid-date checks
 - Conservative multi-table join discovery
-- Join cardinality validation
-- Join explosion protection
+- Join-cardinality validation and join-explosion protection
 
----
-
-## 📊 Business Analytics
+### 📊 Business analytics
 
 - Customer and revenue profiling
 - RFM segmentation
-- Retention analysis
-- Survival analysis
-- Revenue concentration
-- Customer concentration
+- Retention and survival analysis
+- Revenue and customer concentration
 - Cohort-style analysis
 - Anomaly detection
 - Statistical group comparisons
-- Executive summaries
-- Explicit analytical caveats
+- Executive summaries with explicit analytical caveats
 
----
+### 📐 Statistical analysis
 
-## 📐 Statistical Analysis
+| Method | Use |
+|---|---|
+| Pearson, Spearman and Kendall correlation | Examine different forms of association |
+| P-values and Benjamini–Hochberg FDR correction | Evaluate evidence while addressing multiple comparisons |
+| Welch's t-test | Compare group means without assuming equal variances |
+| Cohen's *d* | Quantify standardized effect size |
+| Bootstrap confidence intervals | Estimate uncertainty using resampling |
+| Normality diagnostics | Check assumptions relevant to selected methods |
 
-The platform supports:
+> **Interpretation rule:** association is not causation. Statistical significance alone does not establish business importance.
 
-- Pearson correlation
-- Spearman correlation
-- Kendall correlation
-- P-values
-- Benjamini–Hochberg FDR correction
-- Welch's t-test
-- Cohen's d
-- Bootstrap confidence intervals
-- Normality diagnostics
+### 🤖 Machine learning
 
-The platform explicitly separates **association from causation**.
+<table>
+  <tr><th>Problem types</th><th>Validation safeguards</th><th>Evaluation</th></tr>
+  <tr>
+    <td>Binary classification<br>Multiclass classification<br>Regression</td>
+    <td>Cross-validation<br>Chronological validation<br>Leakage-safe preprocessing<br>Rare-class safeguards<br>Final refitting<br>Artifact validation</td>
+    <td>ROC-AUC · PR-AUC · F1<br>Balanced accuracy · Brier score<br>Calibration · Confusion matrix<br>MAE · RMSE · R²<br>Threshold optimization<br>Decision-curve / net-benefit analysis</td>
+  </tr>
+</table>
 
----
+### 🔍 Explainability
 
-# 🤖 Machine Learning
-
-Supported problem types:
-
-- Binary classification
-- Multiclass classification
-- Regression
-
-### Validation
-
-- Cross-validation
-- Chronological validation
-- Leakage-safe preprocessing
-- Rare-class safeguards
-- Final model refitting
-- Model artifact validation
-
-### Evaluation
-
-- ROC-AUC
-- PR-AUC
-- F1
-- Balanced accuracy
-- Brier score
-- Calibration
-- Confusion matrix
-- MAE
-- RMSE
-- R²
-- Threshold optimization
-- Decision-curve / net-benefit analysis
-
----
-
-# 🔍 Explainability
-
-Model outputs are not treated as black boxes.
-
-The platform provides infrastructure for:
-
-- **SHAP**
-- **Permutation importance**
+- SHAP-based explanations
+- Permutation feature importance
 - Individual-observation explanations
 - Feature-level interpretation
 - Predictive association analysis
 
-> **Important:** model explainability does not establish causality.
+> Model explainability describes model behavior; it does **not** establish causality.
 
----
+### 📈 Time-series & forecasting
 
-# 📈 Time-Series & Forecasting
+| 🔬 Diagnose | 🧰 Engineer | 📉 Forecast & validate |
+|---|---|---|
+| Timestamp normalization; duplicate timestamp handling; frequency and spacing diagnostics; regular vs. irregular series; rolling statistics; ADF and KPSS tests; differencing; ACF/PACF; Ljung–Box; Jarque–Bera; spectral analysis; decomposition; trend and seasonal strength | Calendar and Fourier features; lag features; leakage-safe rolling features | Naive, drift and seasonal-naive baselines; ETS; ARIMA; leakage-aware lag/Ridge forecasting; expanding-window backtesting; recursive multi-step forecasts |
 
-The forecasting layer includes:
+### 🛡️ Governance, monitoring & security controls
 
-### Diagnostics
+<table>
+  <tr><th>Model governance</th><th>Monitoring</th><th>Security and execution controls</th></tr>
+  <tr>
+    <td>Model registry<br>Immutable model hashes<br>Champion/challenger workflow<br>Experiment tracking<br>Model cards<br>Dataset and model lineage</td>
+    <td>Data-drift monitoring<br>Prometheus metrics<br>Grafana dashboards</td>
+    <td>Read-only SQL validation<br>Reject destructive or multi-statement SQL<br>Reject SQL comments and unsafe administrative commands<br>Upload-size enforcement<br>Constant-time API-key comparison<br>Reject malformed AI-agent responses<br>Data-quality gates<br>Join-explosion protection</td>
+  </tr>
+</table>
 
-- Timestamp normalization
-- Duplicate timestamp handling
-- Frequency/spacing diagnostics
-- Regular vs irregular series detection
-- Rolling statistics
-- ADF stationarity test
-- KPSS stationarity test
-- Differencing diagnostics
-- ACF/PACF
-- Ljung–Box diagnostics
-- Jarque–Bera diagnostics
-- Spectral / dominant-period analysis
-- Additive/multiplicative decomposition
-- Trend strength
-- Seasonal strength
-
-### Forecasting
-
-- Naive baseline
-- Drift baseline
-- Seasonal-naive baseline
-- ETS
-- ARIMA
-- Leakage-aware lag/Ridge forecasting
-- Expanding-window backtesting
-- Recursive multi-step forecasting
-
-### Feature Engineering
-
-- Calendar features
-- Fourier features
-- Lag features
-- Leakage-safe rolling features
-
----
-
-# 🛡️ Governance & Production Controls
-
-This platform treats analytics as an engineering system, not just a notebook.
-
-### Model Governance
-
-- Model registry
-- Immutable model hashes
-- Champion/challenger workflow
-- Experiment tracking
-- Model cards
-- Dataset lineage
-- Model lineage
-
-### Monitoring
-
-- Data drift monitoring
-- Prometheus metrics
-- Grafana dashboards
-
-### Security Controls
-
-- Read-only SQL validation
-- Destructive SQL rejection
-- Multiple-statement rejection
-- SQL comment rejection
-- Unsafe administrative command rejection
-- Upload-size enforcement
-- Constant-time API-key comparison
-- Malformed AI-agent response rejection
-- Data-quality gates
-- Join explosion protection
-
----
-
-# 📊 BI Delivery
-
-The platform can generate BI-ready outputs including:
+### 📊 BI delivery
 
 - Excel reports
-- Power BI fact tables
-- Dimension tables
-- Date tables
-- Relationship metadata
+- Power BI fact tables and dimension tables
+- Date tables and relationship metadata
 - DAX measures
 - Power BI import instructions
 
 ---
 
-# 🧠 Optional AI Analytics Agent
+## 🧠 Optional AI analytics agent
 
-The platform includes an optional provider-neutral analytics agent designed around an **OpenAI-compatible interface**.
+The optional provider-neutral analytics agent is designed around an **OpenAI-compatible interface**.
 
-It can:
+<table>
+  <tr>
+    <th align="center">01 · ASK</th><th align="center">02 · PLAN</th><th align="center">03 · VALIDATE</th><th align="center">04 · QUERY</th><th align="center">05 · EXPLAIN</th>
+  </tr>
+  <tr>
+    <td align="center">Natural-language question</td><td align="center">Query plan</td><td align="center">Schema checks and guarded SQL</td><td align="center">Read-only execution</td><td align="center">Result analysis and business explanation</td>
+  </tr>
+</table>
 
-```text
-Natural Language Question
-          ↓
-     Query Planning
-          ↓
-   Schema Validation
-          ↓
-   Guarded SQL Generation
-          ↓
-     Read-Only Query
-          ↓
-     Result Analysis
-          ↓
-   Business Explanation
-```
-
-The system validates model output rather than silently accepting malformed or fabricated responses.
+The system validates model output instead of silently accepting malformed or fabricated responses. AI-generated output should still be reviewed, and the SQL guardrails should be assessed in the context of the intended deployment.
 
 ---
 
-# 🧪 Curated Case Studies
+## 🧪 Curated case studies
 
-## 1. IBM Telco Customer Churn
+<details>
+<summary><strong>Case study 1 · IBM Telco Customer Churn</strong></summary>
 
-Approximately 7K customers.
+Approximately 7K customers. The workflow demonstrates:
 
-Demonstrates:
-
-- Customer profiling
-- Churn analysis
+- Customer profiling and churn analysis
 - Segmentation
 - Predictive modeling
 - Explainability
 - Business interpretation
 
-## 2. UCI Online Retail II
+</details>
 
-A large transactional retail dataset containing **more than one million transactions**.
+<details>
+<summary><strong>Case study 2 · UCI Online Retail II</strong></summary>
 
-The workflow constructs customer-level snapshots and future-looking churn targets while avoiding future transactions as predictors.
+A large transactional retail dataset containing more than one million transactions. The workflow constructs customer-level snapshots and future-looking churn targets while avoiding future transactions as predictors.
 
-> The repository does **not** hard-code fabricated benchmark metrics. Run the pipelines in your environment to generate current metrics.
+> Benchmark metrics are not hard-coded as fabricated results. Run the pipelines in your environment to generate current metrics.
+
+</details>
 
 ---
 
-# 🧰 Technology Stack
+## 🧰 Technology stack
 
 | Layer | Technology |
 |---|---|
 | Language | Python 3.10+ |
-| Data | Pandas, NumPy |
+| Data processing | Pandas, NumPy |
 | SQL | DuckDB / SQL |
 | Statistics | SciPy / statistical tooling |
-| Machine Learning | Scikit-learn |
+| Machine learning | Scikit-learn |
 | Explainability | SHAP |
 | Dashboard | Streamlit |
 | API | FastAPI |
-| BI | Excel / Power BI |
+| BI outputs | Excel / Power BI |
 | Monitoring | Prometheus / Grafana |
 | Deployment | Docker Compose |
 | Testing | Pytest |
-| Version Control | Git / GitHub |
+| Version control | Git / GitHub |
 
 ---
 
-# 🚀 Quick Start
+## 🚀 Quick start
 
-## 1. Clone the repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/shubham-k-jha/Customer-Revenue-Churn.git
 cd Customer-Revenue-Churn
 ```
 
-## 2. Create a virtual environment
+### 2. Create and activate a virtual environment
 
-### Linux / macOS
+**Linux / macOS**
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 ```
 
-### Windows PowerShell
+**Windows PowerShell**
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 ```
 
-## 3. Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -434,47 +322,32 @@ pip install -r requirements.txt
 
 ---
 
-# ✅ Verify the Installation
+## ✅ Verify the installation
 
-### Smoke test
+Run these documented checks from the repository root:
 
-```bash
-python scripts/smoke_test.py
-```
+| Check | Command |
+|---|---|
+| Smoke test | `python scripts/smoke_test.py` |
+| Test suite | `pytest -q` |
+| Release validation | `python scripts/validate_release.py` |
+| Performance benchmark | `python scripts/benchmark.py --rows 10000 100000 1000000` |
 
-### Full test suite
-
-```bash
-pytest -q
-```
-
-### Release validation
-
-```bash
-python scripts/validate_release.py
-```
-
-### Performance benchmark
-
-```bash
-python scripts/benchmark.py --rows 10000 100000 1000000
-```
-
-The project documentation identifies these as the reproducibility and release-validation commands.
+These commands are reproduced from the supplied project README; verify their availability in the current checkout before relying on them.
 
 ---
 
-# 🖥️ Run the Dashboard
+## 🖥️ Run the dashboard, API and Docker stack
+
+### Streamlit dashboard
 
 ```bash
 streamlit run app/streamlit_app.py
 ```
 
-Then open the local Streamlit URL shown in your terminal.
+Open the local URL printed in the terminal.
 
----
-
-# 🔌 Run the API
+### FastAPI service
 
 In another terminal:
 
@@ -482,25 +355,12 @@ In another terminal:
 uvicorn api.main:app --host 0.0.0.0 --port 8000
 ```
 
-### Health check
+| Endpoint | Purpose |
+|---|---|
+| `http://localhost:8000/health` | Health check |
+| `http://localhost:8000/metrics` | Metrics endpoint |
 
-```text
-http://localhost:8000/health
-```
-
-### Metrics
-
-```text
-http://localhost:8000/metrics
-```
-
-
-
----
-
-# 🐳 Docker
-
-The Docker Compose stack contains:
+### Docker Compose
 
 | Service | Purpose |
 |---|---|
@@ -509,61 +369,49 @@ The Docker Compose stack contains:
 | `prometheus` | Metrics collection |
 | `grafana` | Monitoring dashboards |
 
-Start everything:
+Start the stack with:
 
 ```bash
 docker compose up --build
 ```
 
-> **Note:** the v4.2.0 offline audit structurally validated the Compose configuration but did not live-launch Docker because a Docker daemon was unavailable in the audit environment. Live container validation should therefore be performed in the deployment environment.
+> **Deployment note:** the supplied audit says Docker Compose configuration was structurally parsed, but Docker was not live-launched because a Docker daemon was unavailable in the audit environment. Validate the containers in your own deployment environment.
 
 ---
 
-# 📁 Repository Structure
+## 📁 Repository structure
 
 ```text
 Customer-Revenue-Churn/
-│
 ├── api/                    # FastAPI application
 ├── app/                    # Streamlit dashboard
-│
-├── configs/                # Platform & model policies
-│
-├── data/
-│   └── samples/            # Reproducible demo datasets
-│
-├── docker/                 # Container & monitoring configuration
-│
-├── docs/                   # Architecture, methodology & operations
-│
+├── configs/                # Platform and model policies
+├── data/samples/           # Reproducible demo datasets
+├── docker/                 # Container and monitoring configuration
+├── docs/                   # Architecture, methodology and operations
 ├── models/                 # Model artifact location
 ├── reports/                # Generated reports
-│
-├── scripts/                # Smoke, benchmark & release validation
-│
-├── sql/                    # Business & retail SQL
+├── scripts/                # Smoke, benchmark and release validation
+├── sql/                    # Business and retail SQL
 ├── src/                    # Core platform implementation
-├── tests/                  # Unit & integration tests
-│
+├── tests/                  # Unit and integration tests
 ├── Makefile                # Common engineering commands
 ├── pyproject.toml          # Package configuration
 ├── requirements.txt        # Dependencies
 └── docker-compose.yml      # Local service stack
 ```
 
-The repository structure follows the v4.2 release structure documented in the project README.
+*This tree reflects the structure described in the supplied README. Confirm it against the current repository if files have changed.*
 
 ---
 
-# 🧪 Release Quality
+## 🧪 Reported release audit
 
-The **v4.2.0** release was audited from the packaged ZIP and extracted into a fresh directory.
+The supplied README reports an offline audit of the packaged release, extracted into a fresh directory. The results below are **reported audit results, not a new audit performed while editing this README**.
 
-### Audit Results
-
-| Check | Result |
+| Audit check | Reported result |
 |---|---|
-| Tests | ✅ 67 passed |
+| Test suite | ✅ 67 passed |
 | Optional Parquet test | ⚠️ 1 skipped |
 | Smoke test | ✅ Passed |
 | 10K benchmark | ✅ Passed |
@@ -575,130 +423,72 @@ The **v4.2.0** release was audited from the packaged ZIP and extracted into a fr
 | ZIP integrity | ✅ Passed |
 | Docker Compose parsing | ✅ Passed |
 | Version consistency | ✅ Passed |
-
-The audit also confirmed that no Python cache/build artifacts were included in the release archive.
+| Python cache/build artifacts in release archive | ✅ Reported absent |
 
 ---
 
-# 🔬 Reproducibility
+## 🔬 Reproducibility and limitations
 
-The platform records or supports:
+### Reproducibility support
 
 - Deterministic random seeds
 - Dataset hashes
 - Git commit metadata
-- Python/platform metadata
+- Python and platform metadata
 - Model artifact hashes
 - Run metadata
 - Release manifests
 
-The dependency specification uses bounded versions. A complete resolved lockfile should be generated in a connected environment or CI using the project's dependency-locking procedure.
+The supplied documentation describes bounded dependency versions. A complete resolved lockfile should be generated in a connected environment or CI using the project's dependency-locking procedure.
+
+### Important limitations
+
+This is an analytics application, **not a security-certified production system**. Before exposing it publicly or using it inside an organization, complete appropriate:
+
+- Threat modeling and secrets management
+- Authentication and authorization review
+- Network controls and deployment hardening
+- Security review and penetration testing
+- Domain-specific validation and monitoring design
+
+Automated analytics does not guarantee valid business conclusions. Data quality, domain knowledge, causal design, evaluation design and deployment context remain critical.
 
 ---
 
-# 🎯 Why This Project Matters
+## 🎯 Why this project matters
 
-This project intentionally goes beyond a typical portfolio notebook.
+This project is intended to demonstrate a complete analytics lifecycle rather than a single notebook:
 
-It demonstrates the complete analytics lifecycle:
+| Stage | Evidence of the capability |
+|---|---|
+| Data engineering | Reusable ingestion, profiling and quality checks |
+| Business analysis | Customer, revenue, retention and concentration analysis |
+| Statistical reasoning | Hypothesis tests, effect sizes and uncertainty estimates |
+| Machine learning | Validation, calibration, metrics and model artifacts |
+| Explainability | SHAP and permutation importance workflows |
+| Forecasting | Time-series diagnostics and backtesting approaches |
+| Reporting | Excel and BI-ready data outputs |
+| Serving | API and dashboard entry points |
+| Governance | Registry, hashes and lineage support |
+| Monitoring | Drift and operational metrics integrations |
 
-```text
-Raw Data
-   ↓
-Data Engineering
-   ↓
-Quality Assurance
-   ↓
-Business Analysis
-   ↓
-Statistical Reasoning
-   ↓
-Machine Learning
-   ↓
-Explainability
-   ↓
-Forecasting
-   ↓
-Reporting
-   ↓
-API / Dashboard
-   ↓
-Governance
-   ↓
-Monitoring
-```
-
-The strongest way to describe the project is:
-
-> **I built a governed analytics platform that takes raw tabular data from ingestion through business analysis, predictive modeling, explainability, reporting, serving and monitoring.**
+> **Project summary:** I built a governed analytics platform that takes raw tabular data from ingestion through business analysis, predictive modeling, explainability, reporting, serving and monitoring.
 
 ---
 
-# 💼 Career Relevance
+## 💼 Career relevance
 
-### Business Analyst
-
-```text
-Requirements
-→ Business Questions
-→ KPI Definitions
-→ SQL
-→ Statistical Reasoning
-→ Recommendations
-→ Stakeholder Reporting
-```
-
-### Data Analyst
-
-```text
-Data Cleaning
-→ EDA
-→ Data Quality
-→ SQL / Pandas
-→ Statistics
-→ Visualization
-→ Business Conclusions
-```
-
-### BI Analyst
-
-```text
-Data Model
-→ Fact / Dimension Tables
-→ Relationships
-→ DAX
-→ Power BI Outputs
-→ Executive Monitoring
-```
-
-### Data Scientist
-
-```text
-Feature Engineering
-→ Validation
-→ Model Selection
-→ Calibration
-→ Explainability
-→ Error Analysis
-→ Deployment
-→ Monitoring
-```
-
-### Analytics Engineer
-
-```text
-Reusable Pipelines
-→ Data Contracts
-→ SQL
-→ Testing
-→ Reproducibility
-→ Lineage
-→ Governed Outputs
-```
+| Role | Horizontal workflow | Skills demonstrated |
+|---|---|---|
+| **Business Analyst** | Requirements → Business questions → KPI definitions → SQL → Statistical reasoning → Recommendations → Stakeholder reporting | Problem framing, metrics, evidence-based recommendations |
+| **Data Analyst** | Data cleaning → EDA → Data quality → SQL / Pandas → Statistics → Visualization → Business conclusions | Data wrangling, analysis, communication |
+| **BI Analyst** | Data model → Fact / dimension tables → Relationships → DAX → Power BI outputs → Executive monitoring | Data modeling, semantic reporting, dashboard delivery |
+| **Data Scientist** | Feature engineering → Validation → Model selection → Calibration → Explainability → Error analysis → Deployment → Monitoring | Predictive modeling and model evaluation |
+| **Analytics Engineer** | Reusable pipelines → Data contracts → SQL → Testing → Reproducibility → Lineage → Governed outputs | Reliable analytical data systems |
 
 ---
 
-# 📚 Documentation
+## 📚 Documentation
 
 Recommended reading order:
 
@@ -713,86 +503,40 @@ Recommended reading order:
 
 ---
 
-# 🚧 Project Status & Active Development
+## 🚧 Project status & active development
 
-**Version:** `4.2.0`
+**Status:** 🟢 Working · 🧪 Actively tested · 🚧 Continuously improving
 
-**Status:** 🟢 Working · 🧪 Actively Tested · 🚧 Continuously Improving
+The project is described as working and actively maintained, but it is **not considered finished**. Development priorities include:
 
-This project is **working and actively maintained**, but it is **not considered finished**.
+| 🔧 Reliability | 📈 Analytics | 🤖 Intelligence | 🛡️ Operations | 🎨 Experience |
+|---|---|---|---|---|
+| Expand tests and edge-case handling; improve validation | Add business analytics; expand forecasting and time-series features | Improve AI agent, ML diagnostics and explainability | Strengthen governance, drift monitoring, lineage and containerization | Improve dashboard usability, examples and documentation |
 
-Version `4.2.0` is a functional, tested release with a production-oriented architecture. However, I am continuing to experiment, test, refine and expand the platform to make it more robust, intelligent, scalable and useful for real-world analytics.
-
-### 🔨 Current Development Focus
-
-- 🔧 Improving existing analytics workflows
-- 🧪 Expanding test coverage and edge-case handling
-- ⚡ Improving performance and scalability
-- 📊 Adding more advanced business analytics
-- 🤖 Improving the optional AI analytics agent
-- 📈 Expanding forecasting and time-series capabilities
-- 🧠 Improving ML diagnostics and explainability
-- 🛡️ Strengthening governance, validation and monitoring
-- 🔄 Improving data-drift and model-drift detection
-- 🔗 Expanding data lineage and reproducibility
-- 🐳 Improving deployment and containerization
-- 🎨 Improving the dashboard and user experience
-- 📚 Expanding documentation, examples and practical use cases
-
-### 🚀 What's Next
-
-The platform will continue evolving through incremental releases.
-
-The goal is not simply to add more features, but to continuously improve:
-
-```text
-Reliability
-    ↓
-Accuracy
-    ↓
-Performance
-    ↓
-Explainability
-    ↓
-Usability
-    ↓
-Production Readiness
-```
-
-> **This is a work in progress. I am continuously building, testing, fixing and improving the system rather than treating the current release as the final version.**
-
-⭐ **If you find the project interesting, follow the repository and check back for future releases and improvements.**
+The aim is to improve reliability, accuracy, performance, explainability, usability and production readiness—not simply to increase the number of features.
 
 ---
 
-# ⚠️ Important Limitations
-
-This is an analytics application, **not a security-certified production system**.
-
-Before exposing it publicly in a real organization, perform appropriate:
-
-- Threat modeling
-- Secrets management
-- Authentication / authorization
-- Network controls
-- Security review
-- Penetration testing
-- Domain-specific validation
-
-Automated analytics also does not guarantee valid business conclusions. **Data quality, domain knowledge, causal design and deployment context remain critical.**
-
----
-
-# 📌 License
+## 📌 License
 
 See [`LICENSE`](LICENSE).
 
 ---
 
+## 🤝 Contact
+
 <p align="center">
-  <strong>Built to demonstrate that analytics can be reproducible, testable, explainable and deployable — not merely visually impressive.</strong>
+  <strong>Shubham Kumar Jha</strong><br>
+  Data Analytics · Business Analytics · Data Science
 </p>
 
 <p align="center">
-  <sub>Customer Revenue & Churn Intelligence Platform · v4.2.0</sub>
+  <a href="mailto:shubhamkjha.ds@gmail.com"><img src="https://img.shields.io/badge/Email-shubhamkjha.ds%40gmail.com-D14836?logo=gmail&logoColor=white" alt="Email"></a>
+  <a href="https://github.com/shubham-k-jha"><img src="https://img.shields.io/badge/GitHub-shubham--k--jha-181717?logo=github&logoColor=white" alt="GitHub"></a>
+  <a href="https://www.linkedin.com/in/shubham-k-jha/"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+</p>
+
+<p align="center">
+  <strong>Built to demonstrate that analytics can be reproducible, testable, explainable and deployable—not merely visually impressive.</strong><br>
+  <sub><a href="#-contents">Back to top ↑</a></sub>
 </p>
